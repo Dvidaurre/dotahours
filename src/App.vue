@@ -5,18 +5,19 @@
     <button @click="getData">Click here</button>
     {{info}}
     <hr />
-    <div id="app">
-      <hr />
-      <h1>wassup</h1>
-      <h1>Bitcoin Price Index</h1>
-      <div v-for="currency in info" class="currency">
-        {{ currency.description }}:
-        <span class="lighten">
-          <span v-html="currency.symbol"></span>
-          {{ currency.rate_float | currencydecimal }}
-        </span>
+    <p v-if="loading">Cargando información...</p>
+    <h3 v-else>
+      <div :key="p" v-for="(player,p) in players">
+        <h1>
+          <a :href="player.profileurl">{% raw %}{{ player.personaname }}{% endraw %}</a>
+        </h1>
+        <p>
+          steamID64:
+          <b>{% raw %}{{ player.steamid }}{% endraw %}</b>
+        </p>
+        <img :src="player.avatarfull" />
       </div>
-    </div>
+    </h3>
   </div>
 </template>
 <script>
@@ -28,34 +29,38 @@ export default {
   components: {
     MainContainer
   },
+  created() {
+    this.getAPIdata();
+    this.loading = true;
+  },
+
   data() {
     return {
-      info: null
+      players: [],
+      loading: false
     };
   },
+
   methods: {
-    getData() {
+    getAPIdata() {
+      var url =
+        "/api/ISteamUser/GetPlayerSummaries/v2/?key={API_KEY}&steamids={STEAM_ID}";
       axios
-        .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-        .then(response => (this.info = response.data.bpi));
+        .get(url)
+        .then(response => {
+          console.log(response);
+          this.players = response.data.response.players;
+          this.loading = false;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
-  },
-  mounted() {
-    axios
-      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-      .then(response => {
-        this.info = response.data.bpi;
-      })
-      .catch(error => {
-        console.log(error);
-        this.errored = true;
-      })
-      .finally(() => (this.loading = false));
   }
 };
 
-////Key: 824262B54AC9C7A3086050AC3DA3EF8C
-//Domain Name: gnomypets.com
+////Key: 27C734799B2BBD0050946BE5B289E79B
+//Domain Name: https://stupefied-poincare-350dd5.netlify.com/
 </script>
 
 <style>
