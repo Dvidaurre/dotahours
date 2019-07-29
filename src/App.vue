@@ -21,7 +21,6 @@
 </template>
 <script>
 import axios from "axios";
-import module from "./components/module.js";
 import MainContainer from "./components/MainContainer.vue";
 
 export default {
