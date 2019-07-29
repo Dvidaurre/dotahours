@@ -7,6 +7,7 @@
     <hr />
     <div id="app">
       <hr />
+      <h1>wassup</h1>
       <h1>Bitcoin Price Index</h1>
       <div v-for="currency in info" class="currency">
         {{ currency.description }}:
