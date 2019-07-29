@@ -2,8 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <MainContainer />
-    <button @click="getData">Click here</button>
-    {{info}}
+
     <hr />
     <p v-if="loading">Cargando información...</p>
     <h3 v-else>
@@ -44,7 +43,7 @@ export default {
   methods: {
     getAPIdata() {
       var url =
-        "/api/ISteamUser/GetPlayerSummaries/v2/?key={API_KEY}&steamids={STEAM_ID}";
+        "/api/ISteamUser/GetPlayerSummaries/v2/?key=27C734799B2BBD0050946BE5B289E79B&steamids=76561197980619010";
       axios
         .get(url)
         .then(response => {
