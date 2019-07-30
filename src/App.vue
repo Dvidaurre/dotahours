@@ -66,7 +66,7 @@ export default {
     send() {
       axios
         .get(
-          `http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?appid=${this.appid}&key=${this.APIKEY}&steamid=76561198082496957&format=json`,
+          `https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?appid=${this.appid}&key=${this.APIKEY}&steamid=76561198269391482&format=json`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -77,6 +77,7 @@ export default {
         .then(response => {
           console.log(response);
           console.log(response.data);
+          this.returnData = response.data;
         })
         .catch(error => {
           console.log(error);
