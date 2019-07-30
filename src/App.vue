@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <MainContainer />
-
+    <button @click="send">Get Api</button>
     <hr />
     <p v-if="loading">Cargando información...</p>
     <h3 v-else>
@@ -36,14 +36,16 @@ export default {
   data() {
     return {
       players: [],
-      loading: false
+      loading: false,
+      APIKEY: "27C734799B2BBD0050946BE5B289E79B",
+      appid: "570"
     };
   },
 
   methods: {
     getAPIdata() {
       var url =
-        "/api/ISteamUser/GetPlayerSummaries/v2/?key=27C734799B2BBD0050946BE5B289E79B&steamids=76561197980619010";
+        "/api/ISteamUser/GetPlayerSummaries/v2/?key={API_KEY}&steamids={STEAM_ID}";
       axios
         .get(url)
         .then(response => {
@@ -53,6 +55,21 @@ export default {
         })
         .catch(error => {
           console.log(error);
+        });
+    },
+    send() {
+      axios
+        .get(
+          `http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?appid=${this.appid}&key=${this.APIKEY}&steamid=76561198269391482&format=json`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            }
+          }
+        )
+        .then(r => {
+          console.log(r);
         });
     }
   }
