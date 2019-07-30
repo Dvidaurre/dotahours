@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <MainContainer />
-    <button @click="send">Get Api</button>
+    <button @click="send">Get Aapi</button>
     <hr />
     <p v-if="loading">Cargando información...</p>
     <h3 v-else>
