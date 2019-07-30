@@ -62,7 +62,7 @@ export default {
     send() {
       axios
         .get(
-          `http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?appid=${this.appid}&key=${this.APIKEY}&steamid=76561198269391482&format=json`,
+          `https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?appid=${this.appid}&key=${this.APIKEY}&steamid=76561198269391482&format=json`,
           {
             headers: {
               "Content-Type": "application/json",
