@@ -72,6 +72,7 @@ export default {
         )
         .then(response => {
           console.log(response);
+          console.log(data);
           this.players = response.data.response.players;
           this.loading = false;
         })
