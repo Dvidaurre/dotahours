@@ -18,7 +18,10 @@
       </div>
     </h3>
     <hr />
-    {{playerstats}}
+    <div v-if="returnData">
+      <h1>Hay respuesta</h1>
+      {{returnData}}
+    </div>
   </div>
 </template>
 <script>
@@ -40,7 +43,8 @@ export default {
       players: [],
       loading: false,
       APIKEY: "27C734799B2BBD0050946BE5B289E79B",
-      appid: "570"
+      appid: "570",
+      returnData: []
     };
   },
 
@@ -72,9 +76,7 @@ export default {
         )
         .then(response => {
           console.log(response);
-          console.log(data);
-          this.players = response.data.response.players;
-          this.loading = false;
+          console.log(response.data);
         })
         .catch(error => {
           console.log(error);
