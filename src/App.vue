@@ -70,8 +70,13 @@ export default {
             }
           }
         )
-        .then(r => {
-          console.log(r);
+        .then(response => {
+          console.log(response);
+          this.players = response.data.response.players;
+          this.loading = false;
+        })
+        .catch(error => {
+          console.log(error);
         });
     }
   }
