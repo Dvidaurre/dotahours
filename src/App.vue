@@ -17,6 +17,8 @@
         <img :src="player.avatarfull" />
       </div>
     </h3>
+    <hr />
+    {{playerstats}}
   </div>
 </template>
 <script>
